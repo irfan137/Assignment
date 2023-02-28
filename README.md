@@ -1,5 +1,5 @@
 # Assignment
-1.	Create a browser or native-app-based application to serve as a basic weather app.
+1.	Created a native iOS basic weather app.
 2.	Search Screen
 1.	Allow customers to enter a US city
 2.	Call the openweathermap.org API and display the information you think a user would be interested in seeing.
