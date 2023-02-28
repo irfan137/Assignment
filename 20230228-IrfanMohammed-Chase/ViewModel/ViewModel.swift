@@ -10,7 +10,7 @@ import UIKit
 
 class ViewModel: ViewModelable {
     var status: Int?
-   // weak var controller: InitialViewControlling?
+    // weak var controller: InitialViewControlling?
     
     private func getWeatherData<T: Decodable>(urlString: String, completion: @escaping (WeatherResult<T>) -> Void) {
         
@@ -37,14 +37,14 @@ class ViewModel: ViewModelable {
 }
 
 extension ViewModel {
-    
+    ///http://api.openweathermap.org/data/2.5/forecast?lat=44.34&lon=10.99&appid=10ed99eecb01537fb30cee9c9cd7b877
     /// Get current city weather data One Weather API
     /// - Parameters:
     ///   - lat: Latitude
     ///   - lon: Longitude
     ///   - completion: WeatherResponse
     func getCurrentCityResult(lat: Double, lon: Double, completion:@escaping WeatherResponse) {
-        getWeatherData(urlString: "https://api.openweathermap.org/data/2.5/onecall?lat=\(lat)&lon=\(lon)&units=imperial&appid=10ed99eecb01537fb30cee9c9cd7b877") { (result: WeatherResult<WeatherModel>) in
+        getWeatherData(urlString: "https://api.openweathermap.org/data/2.5/forecast?lat=\(lat)&lon=\(lon)&appid=10ed99eecb01537fb30cee9c9cd7b877") { (result: WeatherResult<ListModel>) in
             switch result {
             case .success(let response):
                 completion(.success(SuccessResponse(modelObject: response.modelObject, statusCode: 200)))

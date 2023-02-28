@@ -18,11 +18,11 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="insetGrouped" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" estimatedSectionHeaderHeight="-1" sectionFooterHeight="18" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="Qyv-D7-kjW">
-                                <rect key="frame" x="0.0" y="145" width="390" height="665"/>
+                                <rect key="frame" x="0.0" y="155" width="390" height="655"/>
                                 <sections/>
                             </tableView>
                             <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="PYn-d1-cQo">
-                                <rect key="frame" x="0.0" y="91" width="390" height="44"/>
+                                <rect key="frame" x="10" y="101" width="370" height="44"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="O4p-uK-0Og"/>
                                 </constraints>
@@ -35,10 +35,10 @@
                         <viewLayoutGuide key="safeArea" id="Teg-Sc-CpE"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="PYn-d1-cQo" firstAttribute="leading" secondItem="Teg-Sc-CpE" secondAttribute="leading" id="0r2-zJ-rd6"/>
+                            <constraint firstItem="PYn-d1-cQo" firstAttribute="leading" secondItem="Teg-Sc-CpE" secondAttribute="leading" constant="10" id="0r2-zJ-rd6"/>
                             <constraint firstItem="Qyv-D7-kjW" firstAttribute="top" secondItem="PYn-d1-cQo" secondAttribute="bottom" constant="10" id="34C-Ak-doU"/>
-                            <constraint firstItem="PYn-d1-cQo" firstAttribute="top" secondItem="Teg-Sc-CpE" secondAttribute="top" id="f3v-3P-OiE"/>
-                            <constraint firstItem="PYn-d1-cQo" firstAttribute="trailing" secondItem="Teg-Sc-CpE" secondAttribute="trailing" id="hGR-MW-sL6"/>
+                            <constraint firstItem="PYn-d1-cQo" firstAttribute="top" secondItem="Teg-Sc-CpE" secondAttribute="top" constant="10" id="f3v-3P-OiE"/>
+                            <constraint firstItem="PYn-d1-cQo" firstAttribute="trailing" secondItem="Teg-Sc-CpE" secondAttribute="trailing" constant="-10" id="hGR-MW-sL6"/>
                             <constraint firstItem="Qyv-D7-kjW" firstAttribute="bottom" secondItem="Teg-Sc-CpE" secondAttribute="bottom" id="pC6-i0-92s"/>
                             <constraint firstItem="Qyv-D7-kjW" firstAttribute="trailing" secondItem="Teg-Sc-CpE" secondAttribute="trailing" id="svk-XO-1kx"/>
                             <constraint firstItem="Qyv-D7-kjW" firstAttribute="leading" secondItem="Teg-Sc-CpE" secondAttribute="leading" id="x14-Un-7Le"/>

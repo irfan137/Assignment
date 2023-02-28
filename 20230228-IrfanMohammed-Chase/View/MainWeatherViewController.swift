@@ -27,14 +27,15 @@ class MainWeatherViewController: UIViewController {
         }
     }
     
-    // Core Data to store the last location enter by user
-    var location: [Location]?
+    
     var locationManager: CLLocationManager?
-    var weatherData: WeatherModel?
+    var weatherData: ListModel?
     
     // City Name
     var cityName = ""
     
+    // Core Data to store the last location enter by user
+    var location: [Location]?
     // Core Data is Empty
     var isCoreDataEmpty: Bool {
         do {
@@ -45,7 +46,6 @@ class MainWeatherViewController: UIViewController {
             return true
         }
     }
-    
     private let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
     var serviceProvider = ViewModel()
@@ -174,6 +174,8 @@ extension MainWeatherViewController: AddCitiesProviding {
         tableView.reloadData()
     }
     
+    /// Show Alert pop up
+    /// - Parameter message: service error
     func showErrorAlert(_ message: String) {
         let alert = UIAlertController(title: "Sorry Please try Agin Later", message: message, preferredStyle: UIAlertController.Style.alert)
         let cancelAction: UIAlertAction = UIAlertAction(title: "OK", style: .cancel) {_ in
@@ -184,7 +186,6 @@ extension MainWeatherViewController: AddCitiesProviding {
             self.present(alert, animated: true)
         }
     }
-
 }
 
 // MARK: Serach Bar
@@ -210,8 +211,8 @@ extension MainWeatherViewController: UITableViewDelegate {
 extension MainWeatherViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch(section) {
-        case 1: return weatherData?.hourly.count ?? 0
-        default: return 0
+        case 1: return weatherData?.list?.count ?? 0
+        default: return 1
         }
     }
     
@@ -228,7 +229,7 @@ extension MainWeatherViewController: UITableViewDataSource {
             return cell
         } else {
             let cell = tableView.dequeueReusableCell(withIdentifier: ViewConstants.hourCell.rawValue, for: indexPath) as! HourlyTableViewCell
-            cell.data = weatherData?.hourly[indexPath.row]
+            cell.data = weatherData?.list?[indexPath.row]
             cell.selectionStyle = .none
             return cell
         }

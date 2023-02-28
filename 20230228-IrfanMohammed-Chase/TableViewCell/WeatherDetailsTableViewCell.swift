@@ -8,7 +8,7 @@
 import UIKit
 
 class WeatherDetailsTableViewCell: UITableViewCell {
-
+    
     @IBOutlet weak var cityDetail: UILabel!
     @IBOutlet weak var dateLbl: UILabel!
     @IBOutlet weak var tempType: UILabel!

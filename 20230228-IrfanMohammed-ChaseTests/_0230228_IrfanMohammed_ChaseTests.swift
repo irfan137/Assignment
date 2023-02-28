@@ -27,9 +27,9 @@ final class _0230228_IrfanMohammed_ChaseTests: XCTestCase {
     
     /// Test Service call for current city given as latitude and longitude to the API
     func testGetCurrentCityResults() {
-        let exp = expectation(description: "ErrorResponse")
+        let exp = expectation(description: "SuccessResponse")
         model.getCurrentCityResult(lat: 77, lon: 2222) {  _ in
-            XCTAssert(self.model.status == 500)
+            XCTAssert(self.model.status == 200)
             exp.fulfill()
         }
         wait(for: [exp], timeout: 5.0)

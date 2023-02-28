@@ -22,7 +22,7 @@ protocol AddCitiesProviding: AnyObject {
 //    func showErrorAlert()
 //}
 
-typealias WeatherResponse = (WeatherResult<WeatherModel>) -> Void
+typealias WeatherResponse = (WeatherResult<ListModel>) -> Void
 typealias AddCityWeatherResponse = (WeatherResult<AddCityModel>) -> Void
 
 
@@ -30,7 +30,7 @@ typealias AddCityWeatherResponse = (WeatherResult<AddCityModel>) -> Void
 enum ViewConstants: String {
     case currentCell, hourCell, cityCell
     case refresh = "Pull to refresh"
-    case hourForecast = "Todays Hourly Forecast"
+    case hourForecast = "Todays's 3 Hour Forecast"
     case cityList = "List of cities"
     case title = "Weather App"
     case cityWeatherTitle = "City Weather"

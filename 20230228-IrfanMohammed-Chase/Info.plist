@@ -22,9 +22,10 @@
 		</dict>
 	</dict>
 	<key>NSAppTransportSecurity</key>
-	<dict/>
-	<key>Allow Arbitrary Loads</key>
+	<dict>
+	<key>NSAllowsArbitaryLoads</key>
 	<true/>
+    </dict>
 	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
 	<string>Do you allow this app to know your current location?</string>
 	<key>NSLocationAlwaysUsageDescription</key>
