@@ -9,28 +9,30 @@ import XCTest
 @testable import _0230228_IrfanMohammed_Chase
 
 final class _0230228_IrfanMohammed_ChaseTests: XCTestCase {
-
-    override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+    var model = ViewModel()
+    
+    override func setUp() {
+        super.setUp()
     }
-
-    override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-    }
-
-    func testExample() throws {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-        // Any test you write for XCTest can be annotated as throws and async.
-        // Mark your test throws to produce an unexpected failure when your test encounters an uncaught error.
-        // Mark your test async to allow awaiting for asynchronous code to complete. Check the results with assertions afterwards.
-    }
-
-    func testPerformanceExample() throws {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
+    
+    /// Test Service call for city given as string to the API
+    func testCityResults() {
+        let exp = expectation(description: "SuccessResponse")
+        model.addCitiesResults(city: "Frisco") {  _ in
+            XCTAssert(self.model.status == 200)
+            exp.fulfill()
         }
+        wait(for: [exp], timeout: 5.0)
     }
-
+    
+    /// Test Service call for current city given as latitude and longitude to the API
+    func testGetCurrentCityResults() {
+        let exp = expectation(description: "ErrorResponse")
+        model.getCurrentCityResult(lat: 77, lon: 2222) {  _ in
+            XCTAssert(self.model.status == 500)
+            exp.fulfill()
+        }
+        wait(for: [exp], timeout: 5.0)
+    }
+    
 }
