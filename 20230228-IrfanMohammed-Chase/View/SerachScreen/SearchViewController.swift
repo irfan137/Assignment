@@ -9,6 +9,7 @@ import UIKit
 import MapKit
 
 class SearchViewController: UIViewController, UISearchBarDelegate, MKLocalSearchCompleterDelegate {
+    
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var searchResultsTable: UITableView!
     

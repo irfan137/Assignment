@@ -73,7 +73,7 @@ struct Hourly: Codable {
     let weather: [Weather]
 }
 
-
+/// Hourly List Model
 struct ListModel: Codable {
     var list: [ListDetail]?
     let city: CityDetails?

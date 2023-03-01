@@ -46,7 +46,9 @@ class MainWeatherViewController: UIViewController {
             return true
         }
     }
-    private let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+    
+    // CoreData Context
+    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
     var serviceProvider = ViewModel()
     
@@ -60,10 +62,10 @@ class MainWeatherViewController: UIViewController {
         // Fetch saved data from core data
         fetchLocation()
         showIndicator = true
+        
+        // Search Bar
         searchBar.delegate = self
         searchBar.resignFirstResponder()
-        searchBar.searchBarStyle = .minimal
-        searchBar.placeholder = "Search Location"
         
         tableView.register(UINib(nibName: "\(CurrentTableViewCell.self)", bundle: nil), forCellReuseIdentifier: ViewConstants.currentCell.rawValue)
         
@@ -71,15 +73,17 @@ class MainWeatherViewController: UIViewController {
         
         //serviceProvider.controller = self
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+            // NO Location is saved in CoreData
             if self.isCoreDataEmpty {
                 self.getCurrentLocation()
             } else {
+                // Get Last Saved Location from CoreData
                 self.fetchLastSavedLocation()
             }
         }
     }
     
-    // Get Current Location Data
+    /// Get Current Location Data using `CLLocationManager`
     func getCurrentLocation() {
         locationManager = CLLocationManager()
         // Make sure to set the delegate, to get the call back when the user taps Allow option
@@ -93,7 +97,6 @@ class MainWeatherViewController: UIViewController {
             getCityName(latitude: currentLocation.coordinate.latitude, longitude: currentLocation.coordinate.longitude)
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
                 self.serviceProvider.getCurrentCityResult(lat: currentLocation.coordinate.latitude, lon: currentLocation.coordinate.longitude, completion: { [weak self] (results) in
-                    
                     switch results {
                     case .success(let response):
                         guard let self = self else { return }
@@ -109,25 +112,22 @@ class MainWeatherViewController: UIViewController {
         }
     }
     
+    /// Fetch Last Saved Location and make API Call
+    func fetchLastSavedLocation() {
+        self.showIndicator = true
+        getCityData(self.location?.last?.name ?? "")
+    }
+    
+    /// Get city name using Latitude and Longitude
+    /// - Parameters:
+    ///   - latitude: Longitude
+    ///   - longitude: longitude
     func getCityName(latitude: Double, longitude: Double) {
         let location = CLLocation(latitude: latitude, longitude: longitude)
         location.placemark { placemark, error in
             guard let placemark = placemark else { return }
             self.setupCity(name: placemark.locality ?? "")
         }
-    }
-    
-    /// Present to Search location screen
-    func presentLocationSearchView() {
-        let storyBoard : UIStoryboard = UIStoryboard(name: ViewConstants.main.rawValue, bundle:nil)
-        let searchLocationVc = storyBoard.instantiateViewController(withIdentifier: ViewConstants.searchIdentifier.rawValue) as! SearchViewController
-        searchLocationVc.delegate = self
-        self.present(searchLocationVc, animated:true, completion:nil)
-    }
-    
-    func fetchLastSavedLocation() {
-        self.showIndicator = true
-        getCityData(self.location?.last?.name ?? "")
     }
 }
 
@@ -136,6 +136,7 @@ extension MainWeatherViewController: AddCitiesProviding {
     /// Make service call to fetch city weather detail by using city name from Search screen
     /// - Parameter city: String
     func getCityData(_ city: String) {
+        showIndicator = true
         serviceProvider.addCitiesResults(city: city, completion: { [weak self] (results) in
             switch results {
             case .success(let response):
@@ -190,6 +191,15 @@ extension MainWeatherViewController: AddCitiesProviding {
 
 // MARK: Serach Bar
 extension MainWeatherViewController: UISearchBarDelegate {
+    
+    /// Present to Search location screen
+    func presentLocationSearchView() {
+        let storyBoard : UIStoryboard = UIStoryboard(name: ViewConstants.main.rawValue, bundle:nil)
+        let searchLocationVc = storyBoard.instantiateViewController(withIdentifier: ViewConstants.searchIdentifier.rawValue) as! SearchViewController
+        searchLocationVc.delegate = self
+        self.present(searchLocationVc, animated:true, completion:nil)
+    }
+    
     func searchBarShouldBeginEditing(_ searchBar: UISearchBar) -> Bool {
         presentLocationSearchView()
         return false
@@ -235,42 +245,3 @@ extension MainWeatherViewController: UITableViewDataSource {
         }
     }
 }
-
-// MARK: Core Location
-extension MainWeatherViewController: CLLocationManagerDelegate {
-    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
-        switch status {
-        case .notDetermined:
-            print("determine")
-        case .restricted, .denied:  print("restricted")
-        case .authorizedAlways, .authorizedWhenInUse:
-            getCurrentLocation()
-        @unknown default: break
-        }
-    }
-}
-
-// MARK: Core Data
-extension MainWeatherViewController {
-    /// Fetch saved data from core data
-    func fetchLocation() {
-        do {
-            self.location = try context.fetch(Location.fetchRequest())
-            DispatchQueue.main.async {
-                self.tableView.reloadData()
-            }
-        } catch let err as NSError {
-            print(err.debugDescription)
-        }
-    }
-    
-    /// Save data to Core data
-    func saveData() {
-        do {
-            try self.context.save()
-        } catch let err as NSError {
-            print(err.debugDescription)
-        }
-    }
-}
-

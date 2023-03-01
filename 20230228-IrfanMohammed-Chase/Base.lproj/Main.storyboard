@@ -21,7 +21,7 @@
                                 <rect key="frame" x="0.0" y="155" width="390" height="655"/>
                                 <sections/>
                             </tableView>
-                            <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="PYn-d1-cQo">
+                            <searchBar contentMode="redraw" searchBarStyle="minimal" placeholder="Serach Location" translatesAutoresizingMaskIntoConstraints="NO" id="PYn-d1-cQo">
                                 <rect key="frame" x="10" y="101" width="370" height="44"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="O4p-uK-0Og"/>
