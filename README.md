@@ -27,7 +27,7 @@ Getting Started
 ## This app is not available on the App Store.
 ### Prerequisites
 
-* A valid API key from Dark Sky
+* A valid API key from openweathermap.org.  
 * A Mac running macOS Catalina (beta)
 * Xcode 13
 
