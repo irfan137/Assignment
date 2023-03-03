@@ -22,6 +22,22 @@
 * CoreData to store last location serach 
 * Included 3-hours forecast
 
+Getting Started
+
+## This app is not available on the App Store.
+### Prerequisites
+
+* A valid API key from Dark Sky
+* A Mac running macOS Catalina (beta)
+* Xcode 13
+
+### Installation
+
+* Clone or download the project to your local machine
+* Open the project in Xcode
+* Replace YOURAPIKEY with your valid Dark Sky API key in ViewModel.swift
+* Run the simulator
+
 # SS For Enable Location permission
 ![Simulator Screen Shot - iPhone 14 Pro - 2023-02-28 at 13 47 21](https://user-images.githubusercontent.com/17934415/221968222-ede2f18a-e2ff-496a-a7a7-29e0e5443791.png)
 
