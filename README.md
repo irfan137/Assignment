@@ -7,6 +7,15 @@
 3.	Auto-load the last city searched upon app launch.
 4.	Ask the User for location access, If the User gives permission to access the location, then retrieve weather data by default
 
+# The app incorporates:
+
+SwiftUI
+Stacks
+Images and Text
+Gradients
+Parsing JSON using Codable
+Error Handling
+MVVM
 ## USE CoreData to store last location serach 
 
 # SS For Enable Location permission
