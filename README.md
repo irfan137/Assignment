@@ -28,7 +28,7 @@ Getting Started
 ### Prerequisites
 
 * A valid API key from openweathermap.org.  
-* A Mac running macOS Catalina (beta)
+* A Mac running macOS Monterey
 * Xcode 13
 
 ### Installation
