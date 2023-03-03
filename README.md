@@ -8,15 +8,19 @@
 4.	Ask the User for location access, If the User gives permission to access the location, then retrieve weather data by default
 
 # The app incorporates:
+* Swift
+* Stacks
+* Images and Text
+* Parsing JSON using Codable
+* Error Handling
+* MVVM
 
-SwiftUI
-Stacks
-Images and Text
-Gradients
-Parsing JSON using Codable
-Error Handling
-MVVM
-## USE CoreData to store last location serach 
+# Additional features were added to the original functionality of the app, including:
+
+* Custom, dynamic UI using Swift
+* Expanded CurrentWeather model including apparent temperature
+* CoreData to store last location serach 
+* Included 3-hours forecast
 
 # SS For Enable Location permission
 ![Simulator Screen Shot - iPhone 14 Pro - 2023-02-28 at 13 47 21](https://user-images.githubusercontent.com/17934415/221968222-ede2f18a-e2ff-496a-a7a7-29e0e5443791.png)
