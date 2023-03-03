@@ -3,7 +3,6 @@
 2.	Search Screen
 1.	Allow customers to enter a US city
 2.	Call the openweathermap.org API and display the information you think a user would be interested in seeing.
-3.	Have image cache if needed
 3.	Auto-load the last city searched upon app launch.
 4.	Ask the User for location access, If the User gives permission to access the location, then retrieve weather data by default
 
